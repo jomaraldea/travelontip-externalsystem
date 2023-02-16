@@ -38,7 +38,7 @@ attributes.headers.transactionId]]></ee:set-variable>
 				<logger level="INFO" doc:name="Logger" doc:id="c4156ee6-25d3-4fd1-bf38-9b679d62a3e2" message="Error on URI parameter for FastGo External System for transactionId #[vars.transactionId]"/>
 			</otherwise>
 		</choice>
-		<logger level="INFO" doc:name="Logger" doc:id="30df70d2-8966-4bff-9b94-5c2d5e947130" message="Response sent for FastGo External System for transactionId #[vars.transactionId]"/>
+		<logger level="INFO" doc:name="Logger" doc:id="30df70d2-8966-4bff-9b94-5c2d5e947130" message="Response sent for TravelOnTip External System for transactionId #[vars.transactionId]"/>
 		<error-handler >
 			<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="49423deb-8772-4fe1-9f9f-eca60c325378" >
 				<logger level="INFO" doc:name="Logger" doc:id="0d7253cf-7559-4df5-af62-83953fde9419" message="Error occured for FastGo External System for transactionId #[vars.transactionId]"/>

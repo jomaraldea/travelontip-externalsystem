@@ -11,5 +11,5 @@ http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/cu
 	<db:config name="Database_Config" doc:name="Database Config" doc:id="de0dabcb-1b6a-4a10-bf41-cbf0e6e61bf7" >
 		<db:my-sql-connection host="${db.host}" port="${db.port}" user="${db.user}" password="${db.password}" database="${db.database}" />
 	</db:config>
-	<configuration-properties doc:name="Configuration properties" doc:id="9fbb0e3a-4d9b-456a-917f-ffb06bd66b4c" file="config\local.yaml" />
+	<configuration-properties doc:name="Configuration properties" doc:id="9fbb0e3a-4d9b-456a-917f-ffb06bd66b4c" file="config/${MULE_ENV}.yaml" />
 </mule>
