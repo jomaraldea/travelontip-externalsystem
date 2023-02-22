@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="TravelOnTip-GetRoutes-Implementation-suite.xml" />
+	<munit:test name="TravelOnTip-GetRoutes-ImplementationSub_Flow-test" doc:id="fa57b388-f4eb-4eb6-9b5e-22c8f0bcba0e" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Select" doc:id="9f8c21d7-d867-4341-bc1c-f5b2ca6fd4df" processor="db:select">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="29bf092a-0181-420d-ab38-6d8ae61737eb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[output application/java  --- readUrl('classpath://TravelOnTipGetRoutesImplementationSubFlowtest\mock_payload.dwl')]" mediaType="application/java " encoding="UTF-8" />
+					<munit-tools:variables >
+						<munit-tools:variable key="serviceType" value="#[output application/java --- readUrl('classpath://TravelOnTipGetRoutesImplementationSubFlowtest\mock_variable_.dwl')]" mediaType="application/java" encoding="UTF-8" />
+						<munit-tools:variable key="transactionId" value="#[output application/java --- readUrl('classpath://TravelOnTipGetRoutesImplementationSubFlowtest\mock_variable_1.dwl')]" mediaType="application/java" encoding="UTF-8" />
+					</munit-tools:variables>
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+			<munit:set-event doc:name="Set Input" doc:id="648cc3fc-fbaa-4e3a-8c6d-7b760ea95ffc" >
+				<munit:payload value="#[readUrl('classpath://TravelOnTipGetRoutesImplementationSubFlowtest\set-event_payload.dwl')]" encoding="UTF-8" />
+				<munit:attributes value="#[readUrl('classpath://TravelOnTipGetRoutesImplementationSubFlowtest\set-event_attributes.dwl')]" />
+				<munit:variables >
+					<munit:variable key="serviceType" value="#[output application/java --- readUrl('classpath://TravelOnTipGetRoutesImplementationSubFlowtest\set-event_variable_.dwl')]" encoding="UTF-8" mediaType="application/java" />
+					<munit:variable key="transactionId" value="#[output application/java --- readUrl('classpath://TravelOnTipGetRoutesImplementationSubFlowtest\set-event_variable_1.dwl')]" encoding="UTF-8" mediaType="application/java" />
+				</munit:variables>
+			</munit:set-event>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to TravelOnTip-GetRoutes-ImplementationSub_Flow" doc:id="960ded8e-db17-4f66-9330-aaaa06d4e52c" name="TravelOnTip-GetRoutes-ImplementationSub_Flow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert doc:name="Assert payload" doc:id="a52991f4-ef1f-4310-8c11-a999abebba74" message="The payload does not match">
+				<munit-tools:that ><![CDATA[#[%dw 2.0
+import TravelOnTipGetRoutesImplementationSubFlowtest::assert_expression_payload
+---
+assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
+			</munit-tools:assert>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>

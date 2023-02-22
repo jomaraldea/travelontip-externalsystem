@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="travelontip-externalsystem-suite.xml" />
+	<munit:test name="travelontip-externalsystemFlow-test" doc:id="ea56fbf6-4202-4fc3-8cde-2d1c3230243d" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Flow Reference" doc:id="c141151d-a863-4f7c-8187-12cec0eac1dd" processor="flow-ref">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="64b7422b-08ee-4a77-9dad-03451eb8bc44" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[output application/json  --- readUrl('classpath://travelontipexternalsystemFlowtest\mock_payload.dwl')]" mediaType="application/json " encoding="UTF-8" />
+					<munit-tools:variables >
+						<munit-tools:variable key="serviceType" value="#[output application/java --- readUrl('classpath://travelontipexternalsystemFlowtest\mock_variable_.dwl')]" mediaType="application/java" encoding="UTF-8" />
+						<munit-tools:variable key="transactionId" value="#[output application/java --- readUrl('classpath://travelontipexternalsystemFlowtest\mock_variable_1.dwl')]" mediaType="application/java" encoding="UTF-8" />
+					</munit-tools:variables>
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+			<munit:set-event doc:name="Set Input" doc:id="08a8d703-23e0-42be-a8fd-711f37f15edd" >
+				<munit:payload value="#[readUrl('classpath://travelontipexternalsystemFlowtest\set-event_payload.dwl')]" encoding="UTF-8" />
+				<munit:attributes value="#[readUrl('classpath://travelontipexternalsystemFlowtest\set-event_attributes.dwl')]" />
+			</munit:set-event>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to travelontip-externalsystemFlow" doc:id="15ed57fd-6005-41c7-835e-14a3b3322e81" name="travelontip-externalsystemFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert doc:name="Assert payload" doc:id="eff22825-d32b-4641-a501-fd87b1bcf5e6" message="The payload does not match">
+				<munit-tools:that ><![CDATA[#[%dw 2.0
+import travelontipexternalsystemFlowtest::assert_expression_payload
+---
+assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
+			</munit-tools:assert>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="travelontip-externalsystemFlow-test1" doc:id="bac90096-4d3c-43e7-908b-16b0ce55a5b0" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Flow Reference" doc:id="76152e6c-74a4-4a7e-8fe4-332aa9557964" processor="flow-ref">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="5b75d331-5473-41cb-b6e1-2a1f1f7ad374" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[output application/json  --- readUrl('classpath://travelontipexternalsystemFlowtest1\mock_payload.dwl')]" mediaType="application/json " encoding="UTF-8" />
+					<munit-tools:variables >
+						<munit-tools:variable key="serviceType" value="#[output application/java --- readUrl('classpath://travelontipexternalsystemFlowtest1\mock_variable_.dwl')]" mediaType="application/java" encoding="UTF-8" />
+						<munit-tools:variable key="transactionId" value="#[output application/java --- readUrl('classpath://travelontipexternalsystemFlowtest1\mock_variable_1.dwl')]" mediaType="application/java" encoding="UTF-8" />
+					</munit-tools:variables>
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+			<munit:set-event doc:name="Set Input" doc:id="4e28cc89-e455-4b16-97fb-96597e4f9a6b" >
+				<munit:payload value="#[readUrl('classpath://travelontipexternalsystemFlowtest1\set-event_payload.dwl')]" encoding="UTF-8" />
+				<munit:attributes value="#[readUrl('classpath://travelontipexternalsystemFlowtest1\set-event_attributes.dwl')]" />
+			</munit:set-event>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to travelontip-externalsystemFlow" doc:id="3efbf3f4-ac72-43eb-a660-86c86eecdf6b" name="travelontip-externalsystemFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert doc:name="Assert payload" doc:id="519b51ea-c640-4311-af66-6d646d9d6995" message="The payload does not match">
+				<munit-tools:that ><![CDATA[#[%dw 2.0
+import travelontipexternalsystemFlowtest1::assert_expression_payload
+---
+assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
+			</munit-tools:assert>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="travelontip-externalsystemFlow-test2" doc:id="f2ab33cc-ac4c-4d77-a048-6d07555a63f5" >
+		<munit:behavior >
+			<munit:set-event doc:name="Set Input" doc:id="53beed68-ea05-4f0a-b1e2-9786a841f7c8" >
+				<munit:payload value="#[readUrl('classpath://travelontipexternalsystemFlowtest2\set-event_payload.dwl')]" encoding="UTF-8" />
+				<munit:attributes value="#[readUrl('classpath://travelontipexternalsystemFlowtest2\set-event_attributes.dwl')]" />
+			</munit:set-event>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to travelontip-externalsystemFlow" doc:id="c5638da1-a449-469d-8c34-2331301e3ed0" name="travelontip-externalsystemFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert doc:name="Assert payload" doc:id="df1ba29c-3fb2-49f5-9a3f-5a459f4cf8cd" message="The payload does not match">
+				<munit-tools:that ><![CDATA[#[%dw 2.0
+import travelontipexternalsystemFlowtest2::assert_expression_payload
+---
+assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
+			</munit-tools:assert>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
