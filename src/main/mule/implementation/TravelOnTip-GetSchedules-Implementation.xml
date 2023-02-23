@@ -9,7 +9,7 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 		<db:select doc:name="Select" doc:id="33fc1a2c-a476-4680-be2d-375eee495329" config-ref="Database_Config">
 			<db:sql ><![CDATA[SELECT *
 FROM schedules
-WHERE companyname = "TravelOnTip"]]></db:sql>
+WHERE companyName = "TravelOnTip"]]></db:sql>
 		</db:select>
 		<ee:transform doc:name="Transform Message" doc:id="354cd5aa-9d29-4a09-bcbe-46ffebe59e10" >
 			<ee:message >
